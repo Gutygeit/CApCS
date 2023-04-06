@@ -1,4 +1,4 @@
-package capcs.filesystem;
+package capcs.io;
 
 import java.io.File;
 import java.io.FileInputStream;
