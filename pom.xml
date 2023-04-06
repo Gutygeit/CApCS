@@ -7,6 +7,7 @@
     <groupId>capcs</groupId>
     <artifactId>CApCS</artifactId>
     <version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>19</maven.compiler.source>
@@ -26,10 +27,13 @@
     <build>
         <resources> 
             <resource>
-            <directory>src/main/java</directory>
+                <directory>target/site/apidocs</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
                 <includes>
-                <include>**/*.java</include>
-            </includes>
+                    <include>**/*.java</include>
+                </includes>
             </resource>
         </resources>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->

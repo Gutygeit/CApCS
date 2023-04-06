@@ -15,19 +15,9 @@ jobs:
           distribution: temurin
           java-version: 19
       - name: Build jar
-        run: mvn clean package
+        run: mvn clean javadoc:javadoc package
       - name: Upload jar to GitHub
         uses: actions/upload-artifact@v2
         with:
           name: CApCS.jar
           path: target/*.jar
-  javadoc:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy JavaDoc
-        uses: MathieuSoysal/Javadoc-publisher.yml@v2.4.0
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          javadoc-branch: docs
-          java-version: 19
-          project: maven
