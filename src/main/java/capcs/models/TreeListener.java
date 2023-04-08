@@ -69,25 +69,27 @@ public abstract class TreeListener {
      * @param documents List of documents forming the tree
      */
     public void treeChanged(List<Document> documents) {
-        TreeDiff diff = compareWithCurrentVersion(documents);
-        diff.getRemovedDocuments().stream().forEach(doc -> {
-            try {
-                fileDeleted(doc);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        diff.getAddedDocuments().stream().forEach(doc -> {
-            InputStream stream = requestFile(doc);
-            if (stream == null) {
-                return;
-            }
-            try {
-                fileReceived(doc, stream);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        synchronized (currentVersion) {
+            TreeDiff diff = compareWithCurrentVersion(documents);
+            diff.getRemovedDocuments().stream().forEach(doc -> {
+                try {
+                    fileDeleted(doc);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            diff.getAddedDocuments().stream().forEach(doc -> {
+                InputStream stream = requestFile(doc);
+                if (stream == null) {
+                    return;
+                }
+                try {
+                    fileReceived(doc, stream);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
     }
 
     private InputStream requestFile(Document document) {
