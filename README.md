@@ -1,5 +1,9 @@
 # Clone Alpha pas Clone Soja
 
+[![Code Size](https://img.shields.io/github/languages/code-size/Gutygeit/CApCS)]()
+[![codecov](https://codecov.io/github/Gutygeit/CApCS/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Gutygeit/CApCS)
+[![CodeFactor](https://www.codefactor.io/repository/github/Gutygeit/CApCS/badge)](https://www.codefactor.io/repository/github/Gutygeit/CApCS)
+
 Deadline: May 8th.
 
 ## Objective
