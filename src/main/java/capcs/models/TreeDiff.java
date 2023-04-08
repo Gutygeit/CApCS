@@ -43,8 +43,8 @@ public class TreeDiff {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        addedDocuments.forEach(document -> sb.append("+" + document.getPath() + document.getName() + "\n"));
-        removedDocuments.forEach(document -> sb.append("-" + document.getPath() + document.getName() + "\n"));
+        addedDocuments.forEach(document -> sb.append("+" + document.getPath() + document.getName() + " (" + document.getDate() + ")" + "\n"));
+        removedDocuments.forEach(document -> sb.append("-" + document.getPath() + document.getName() + " (" + document.getDate() + ")" + "\n"));
         return sb.toString();
     }
     

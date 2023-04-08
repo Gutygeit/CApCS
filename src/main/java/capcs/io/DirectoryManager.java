@@ -2,11 +2,11 @@ package capcs.io;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +32,11 @@ public class DirectoryManager extends TreeListener {
         this.path = path;
         if (!this.path.endsWith("/")) {
             this.path += "/";
+        }
+        try {
+            Files.createDirectories(Path.of(path));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         // Ugly (T-riz) way to watch for changes
@@ -61,9 +66,35 @@ public class DirectoryManager extends TreeListener {
 
     @Override
     public void fileReceived(Document document, InputStream stream) throws IOException {
-        Files.createDirectories(Path.of(path, document.getPath()));
-        Files.copy(stream, Path.of(path, document.getPath(), document.getName()), StandardCopyOption.REPLACE_EXISTING);
-        new File(path + document.getPath(), document.getName()).setLastModified(document.getDate());
+        // Create folder if needed
+        Files.createDirectories(
+            Path.of(path, document.getPath())
+        );
+
+        // Write the file, with correct size
+        FileOutputStream outputStream = new FileOutputStream(
+            path + document.getPath() + document.getName(),
+            false // Do not append, so replace the file
+        );
+        byte[] buffer = new byte[1024];
+        long left = document.getSize();
+        int length;
+        while ((length = stream.read(buffer)) > 0) {
+            if (length > left) {
+                length = (int) left;
+            }
+            outputStream.write(buffer, 0, length);
+            left -= length;
+            if (left == 0) {
+                break;
+            }
+        }
+        outputStream.close();
+
+        // Update date to match the one from the other side
+        new File(
+            path + document.getPath(), document.getName()
+        ).setLastModified(document.getDate());
     }
 
     @Override
@@ -89,7 +120,8 @@ public class DirectoryManager extends TreeListener {
                     return List.of(new Document(
                         path,
                         runningFile.getName(),
-                        runningFile.lastModified()
+                        runningFile.lastModified(),
+                        runningFile.length()
                     )).stream();
                 }
                 return listContent(path + "/" + runningFile.getName()).stream();
