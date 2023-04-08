@@ -32,6 +32,7 @@ public class Document {
      * @param path Path of the file, without the name, ending by a slash
      * @param name Name of the file, with its extension
      * @param date Last modification date of the file
+     * @param size Size of the file, in bytes
      */
     public Document(String path, String name, long date, long size) {
         this.path = path;

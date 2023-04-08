@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.stream.Stream;
 
 import capcs.models.Document;
 import capcs.models.TreeListener;
@@ -137,6 +138,14 @@ public class NetworkManager extends TreeListener {
 
     @Override
     public void fileReceived(Document document, InputStream stream) throws IOException {
+        // Save document in current version
+        currentVersion = Stream.concat(
+            currentVersion
+                .stream()
+                .filter(d -> !d.getName().equals(document.getName()) || !d.getPath().equals(document.getPath())),
+            Stream.of(document)
+        ).toList();
+
         // Write packet document
         outputStream.write(PACKET_TYPE_FILE_RECEIVED);
         outputStream.write(document.getPath().length());
@@ -156,11 +165,20 @@ public class NetworkManager extends TreeListener {
             }
             outputStream.write(buffer, 0, length);
             left -= length;
+            if (left == 0) {
+                break;
+            }
         }
     }
 
     @Override
     public void fileDeleted(Document document) throws IOException {
+        // Save document in current version
+        currentVersion = currentVersion
+            .stream()
+            .filter(d -> !d.getName().equals(document.getName()) || !d.getPath().equals(document.getPath()))
+            .toList();
+
         // Write packet document
         outputStream.write(PACKET_TYPE_FILE_DELETED);
         outputStream.write(document.getPath().length());
@@ -209,11 +227,9 @@ public class NetworkManager extends TreeListener {
             inputStream.readLong(),
             inputStream.readLong()
         );
-        System.out.println("handleFileRequested " + (address == null ? "server" : "client") + "\n" + doc);
 
         InputStream stream = requestFile(doc);
         if (stream == null) {
-            System.out.println("stream == null");
             return;
         }
 
@@ -228,6 +244,9 @@ public class NetworkManager extends TreeListener {
             }
             outputStream.write(buffer, 0, length);
             left -= length;
+            if (left == 0) {
+                break;
+            }
         }
     }
 
@@ -238,7 +257,12 @@ public class NetworkManager extends TreeListener {
             inputStream.readLong(),
             inputStream.readLong()
         );
-        System.out.println("handleFileReceived " + (address == null ? "server" : "client") + "\n" + doc);
+        currentVersion = Stream.concat(
+            currentVersion
+                .stream()
+                .filter(d -> !d.getName().equals(doc.getName()) || !d.getPath().equals(doc.getPath())),
+            Stream.of(doc)
+        ).toList();
         // TODO: Fix if there are multiple listeners (they can't all read the same stream)
         listeners.forEach(l -> {
             try {
@@ -256,7 +280,10 @@ public class NetworkManager extends TreeListener {
             inputStream.readLong(),
             inputStream.readLong()
         );
-        System.out.println("handleFileDeleted " + (address == null ? "server" : "client") + "\n" + doc);
+        currentVersion = currentVersion
+            .stream()
+            .filter(d -> !d.getName().equals(doc.getName()) || !d.getPath().equals(doc.getPath()))
+            .toList();
         listeners.forEach(l -> {
             try {
                 l.fileDeleted(doc);
@@ -264,6 +291,13 @@ public class NetworkManager extends TreeListener {
                 e.printStackTrace();
             }
         });
+    }
+
+    // MARK: - Object
+
+    @Override
+    public String toString() {
+        return "NetworkManager[" + (address == null ? "server@" + port : "client@" + address + ":" + port) + "]";
     }
     
 }

@@ -85,6 +85,9 @@ public class DirectoryManager extends TreeListener {
             }
             outputStream.write(buffer, 0, length);
             left -= length;
+            if (left == 0) {
+                break;
+            }
         }
         outputStream.close();
 

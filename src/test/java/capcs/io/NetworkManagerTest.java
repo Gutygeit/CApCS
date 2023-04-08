@@ -24,9 +24,6 @@ public class NetworkManagerTest {
             String target = Files.createTempDirectory("target").toFile().getAbsolutePath();
             int port = new Random().nextInt(65535 - 49152) + 49152;
 
-            source = "data/src1";
-            target = "data/target1";
-
             Launcher launcherServer = new Launcher();
             launcherServer.addListener(new DirectoryManager(source));
             launcherServer.addListener(new NetworkManager(null, port));
@@ -56,9 +53,6 @@ public class NetworkManagerTest {
             String target = Files.createTempDirectory("target").toFile().getAbsolutePath();
             int port = new Random().nextInt(65535 - 49152) + 49152;
 
-            source = "data/src2";
-            target = "data/target2";
-
             Launcher launcherServer = new Launcher();
             launcherServer.addListener(new DirectoryManager(source));
             launcherServer.addListener(new NetworkManager(null, port));
@@ -82,9 +76,6 @@ public class NetworkManagerTest {
             String source = Files.createTempDirectory("source").toFile().getAbsolutePath();
             String target = Files.createTempDirectory("target").toFile().getAbsolutePath();
             int port = new Random().nextInt(65535 - 49152) + 49152;
-
-            source = "data/src3";
-            target = "data/target3";
 
             Launcher launcherServer = new Launcher();
             launcherServer.addListener(new DirectoryManager(source));
