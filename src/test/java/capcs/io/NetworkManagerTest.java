@@ -7,12 +7,13 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Random;
 
 import org.junit.Test;
 
 import capcs.launcher.Launcher;
 
-public class DirectoryManagerTest {
+public class NetworkManagerTest {
 
     private final long DELAY = 2000;
 
@@ -21,10 +22,17 @@ public class DirectoryManagerTest {
         try {
             String source = Files.createTempDirectory("source").toFile().getAbsolutePath();
             String target = Files.createTempDirectory("target").toFile().getAbsolutePath();
+            int port = new Random().nextInt(65535 - 49152) + 49152;
 
-            Launcher launcher = new Launcher();
-            launcher.addListener(new DirectoryManager(source));
-            launcher.addListener(new DirectoryManager(target));
+            source = "data/src1";
+            target = "data/target1";
+
+            Launcher launcherServer = new Launcher();
+            launcherServer.addListener(new DirectoryManager(source));
+            launcherServer.addListener(new NetworkManager(null, port));
+            Launcher launcherClient = new Launcher();
+            launcherClient.addListener(new DirectoryManager(target));
+            launcherClient.addListener(new NetworkManager("127.0.0.1", port));
 
             Files.writeString(Path.of(source, "test.txt"), "test");
             Thread.sleep(DELAY);
@@ -46,10 +54,17 @@ public class DirectoryManagerTest {
         try {
             String source = Files.createTempDirectory("source").toFile().getAbsolutePath();
             String target = Files.createTempDirectory("target").toFile().getAbsolutePath();
+            int port = new Random().nextInt(65535 - 49152) + 49152;
 
-            Launcher launcher = new Launcher();
-            launcher.addListener(new DirectoryManager(source));
-            launcher.addListener(new DirectoryManager(target));
+            source = "data/src2";
+            target = "data/target2";
+
+            Launcher launcherServer = new Launcher();
+            launcherServer.addListener(new DirectoryManager(source));
+            launcherServer.addListener(new NetworkManager(null, port));
+            Launcher launcherClient = new Launcher();
+            launcherClient.addListener(new DirectoryManager(target));
+            launcherClient.addListener(new NetworkManager("127.0.0.1", port));
 
             Files.createDirectories(Path.of(source, "subfolder"));
             Files.writeString(Path.of(source, "subfolder/test.txt"), "test");
@@ -66,11 +81,18 @@ public class DirectoryManagerTest {
         try {
             String source = Files.createTempDirectory("source").toFile().getAbsolutePath();
             String target = Files.createTempDirectory("target").toFile().getAbsolutePath();
+            int port = new Random().nextInt(65535 - 49152) + 49152;
 
-            Launcher launcher = new Launcher();
-            launcher.addListener(new DirectoryManager(source));
-            launcher.addListener(new DirectoryManager(target));
-            
+            source = "data/src3";
+            target = "data/target3";
+
+            Launcher launcherServer = new Launcher();
+            launcherServer.addListener(new DirectoryManager(source));
+            launcherServer.addListener(new NetworkManager(null, port));
+            Launcher launcherClient = new Launcher();
+            launcherClient.addListener(new DirectoryManager(target));
+            launcherClient.addListener(new NetworkManager("127.0.0.1", port));
+
             Files.writeString(Path.of(source, "deleted.txt"), "test");
             Thread.sleep(DELAY);
 

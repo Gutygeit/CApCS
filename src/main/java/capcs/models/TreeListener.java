@@ -92,7 +92,7 @@ public abstract class TreeListener {
         }
     }
 
-    private InputStream requestFile(Document document) {
+    protected InputStream requestFile(Document document) {
         for (TreeListener listener : listeners) {
             try {
                 return listener.fileRequested(document);

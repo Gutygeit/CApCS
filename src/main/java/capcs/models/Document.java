@@ -20,6 +20,11 @@ public class Document {
      */
     private long date;
 
+    /**
+     * Size of the file, in bytes
+     */
+    private long size;
+
     // MARK: - Constructor
 
     /**
@@ -28,10 +33,11 @@ public class Document {
      * @param name Name of the file, with its extension
      * @param date Last modification date of the file
      */
-    public Document(String path, String name, long date) {
+    public Document(String path, String name, long date, long size) {
         this.path = path;
         this.name = name;
         this.date = date;
+        this.size = size;
 
         if (!this.path.endsWith("/")) {
             this.path += "/";
@@ -62,6 +68,14 @@ public class Document {
      */
     public long getDate() {
         return date;
+    }
+
+    /**
+     * Get the size of the file
+     * @return Size of the file, in bytes
+     */
+    public long getSize() {
+        return size;
     }
 
     // MARK: - Object
