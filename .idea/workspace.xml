@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7df1ff6-c528-4586-a030-9b9e85c69744" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/capcs/launcher/DaemonLauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/capcs/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/capcs/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="d7df1ff6-c528-4586-a030-9b9e85c69744" name="Changes" comment="Commit in daemon" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +87,7 @@
       <workItem from="1680721614197" duration="1760000" />
       <workItem from="1680729606663" duration="253000" />
       <workItem from="1680950483671" duration="105000" />
-      <workItem from="1680952163459" duration="7752000" />
+      <workItem from="1680952163459" duration="8428000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1680721814894</created>
@@ -101,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680721814894</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Commit in daemon">
+      <created>1680959990313</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1680959990313</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,8 +121,14 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Commit in daemon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit in daemon" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

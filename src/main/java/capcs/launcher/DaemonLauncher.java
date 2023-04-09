@@ -1,5 +1,5 @@
 package capcs.launcher;
-import java.lang.String;
+
 import java.util.Scanner;
 
 public class DaemonLauncher extends Launcher {
@@ -22,21 +22,18 @@ public class DaemonLauncher extends Launcher {
         Scanner scanner = new Scanner(System.in);
         String command;
 
-        do {
+        while (isRunning()) {
             System.out.print("$ > ");
             command = scanner.nextLine();
 
             switch (command) {
                 case "stop" -> stop();
-                case "start" -> start();
-                case "restart" -> restart();
                 case "status" -> System.out.println("Daemon is " + (isRunning() ? "running" : "stopped"));
-                case "exit" -> System.out.println("Program terminated");
-                case "help" -> System.out.println("Available commands: start, stop, restart, status, exit");
+                case "help" -> System.out.println("Available commands: stop, status, exit");
                 default -> System.out.println("Unknown command");
             }
-        } while (!command.equals("exit"));
-        System.exit(0);
+        }
+
     }
 
 
@@ -44,21 +41,13 @@ public class DaemonLauncher extends Launcher {
 
     // MARK: - Methods
 
-
-    /**
-     * Start the daemon
-     */
-    public void start() {
-        running = true;
-        System.out.println("Daemon started");
-    }
-
     /**
      * Stop the daemon
      */
     public void stop() {
         running = false;
         System.out.println("Daemon stopped");
+        System.exit(0);
     }
 
     /**
@@ -68,21 +57,7 @@ public class DaemonLauncher extends Launcher {
         return running;
     }
 
-    /**
-     * Restart the daemon
-     */
-    public void restart() {
-        if(running){
-            stop();
-            start();
-            System.out.println("Daemon restarted");
-        }
-        else System.out.println("Daemon is not running");
-    }
 
-    /**
-     * Read the command Line to create the adequate listener
-     */
 }
 
 
