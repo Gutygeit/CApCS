@@ -135,5 +135,19 @@ public class DirectoryManager extends TreeListener {
     public String toString() {
         return "DirectoryManager[path=" + path + "]";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof DirectoryManager)) {
+            return false;
+        }
+        DirectoryManager other = (DirectoryManager) obj;
+        return path.equals(other.path);
+    }
+
+    @Override
+    public int hashCode() {
+        return path.hashCode();
+    }
     
 }
