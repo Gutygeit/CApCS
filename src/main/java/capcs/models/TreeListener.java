@@ -55,9 +55,6 @@ public abstract class TreeListener {
      * @return List of documents that have changed
      */
     public TreeDiff compareWithCurrentVersion(List<Document> documents) {
-        if (currentVersion == null) {
-            return new TreeDiff(List.of(), List.of());
-        }
         return new TreeDiff(
             documents.stream().filter(doc -> !currentVersion.contains(doc)).toList(),
             currentVersion.stream().filter(doc -> !documents.contains(doc)).toList()

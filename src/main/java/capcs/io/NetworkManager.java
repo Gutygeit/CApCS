@@ -4,11 +4,15 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 import java.util.stream.Stream;
 
 import capcs.models.Document;
+import capcs.models.ListenerWithStream;
 import capcs.models.TreeListener;
 
 /**
@@ -263,14 +267,36 @@ public class NetworkManager extends TreeListener {
                 .filter(d -> !d.getName().equals(doc.getName()) || !d.getPath().equals(doc.getPath())),
             Stream.of(doc)
         ).toList();
-        // TODO: Fix if there are multiple listeners (they can't all read the same stream)
-        listeners.forEach(l -> {
+
+        // Create streams for each listener, and write to them
+        List<ListenerWithStream> streams = listeners.stream().map(l -> {
             try {
-                l.fileReceived(doc, inputStream);
+                PipedOutputStream out = new PipedOutputStream();
+                InputStream in = new PipedInputStream(out);
+                return new ListenerWithStream(l, doc, in, out);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+            return null;
+        }).toList();
+        byte[] buffer = new byte[1024];
+        long left = doc.getSize();
+        int length;
+        while ((length = inputStream.read(buffer)) != -1) {
+            if (length > left) {
+                length = (int) left;
+            }
+            for (ListenerWithStream stream : streams) {
+                stream.getOutputStream().write(buffer, 0, length);
+            }
+            left -= length;
+            if (left == 0) {
+                for (ListenerWithStream stream : streams) {
+                    stream.attachStreamToListener();
+                }
+                break;
+            }
+        }
     }
 
     private void handleFileDeleted() throws IOException {
