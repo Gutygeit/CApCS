@@ -1,6 +1,7 @@
 package capcs.launcher;
 
 import capcs.io.DirectoryManager;
+import capcs.io.NetworkManager;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -75,7 +76,25 @@ public class DaemonLauncher extends Launcher {
                 addListener(new DirectoryManager(path));
                 System.out.println("Folder added in " + path);
             }
-            case "network" -> System.out.println("Network added");
+            case "client" -> {
+                try {
+                    new NetworkManager(k.nextToken(), Integer.parseInt(k.nextToken()));
+                    System.out.println("client added");
+                } catch (NumberFormatException e) {
+                    System.out.println("Port must be an integer");
+                    System.out.println("Client not added");
+                }
+            }
+            case "server" -> {
+                try {
+                    new NetworkManager(null, Integer.parseInt(k.nextToken()));
+                    System.out.println("server added");
+                } catch (NumberFormatException e) {
+                    System.out.println("Port must be an integer");
+                    System.out.println("Server not added");
+                }
+
+            }
             default -> System.out.println("Unknown type");
         }
     }
