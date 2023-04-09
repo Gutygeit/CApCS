@@ -94,5 +94,10 @@ public class Document {
         Document document = (Document) obj;
         return document.path.equals(path) && document.name.equals(name) && document.date == date;
     }
+
+    @Override
+    public int hashCode() {
+        return path.hashCode() + name.hashCode() + (int) date;
+    }
     
 }

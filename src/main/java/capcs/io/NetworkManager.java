@@ -9,6 +9,7 @@ import java.io.PipedOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import capcs.models.Document;
@@ -324,6 +325,20 @@ public class NetworkManager extends TreeListener {
     @Override
     public String toString() {
         return "NetworkManager[" + (address == null ? "server@" + port : "client@" + address + ":" + port) + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof NetworkManager)) {
+            return false;
+        }
+        NetworkManager other = (NetworkManager) obj;
+        return Objects.equals(address, other.address) && port == other.port;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(address, port);
     }
     
 }
