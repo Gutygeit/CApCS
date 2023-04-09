@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7df1ff6-c528-4586-a030-9b9e85c69744" name="Changes" comment="Useless methods removing in DaemonLauncher">
+    <list default="true" id="d7df1ff6-c528-4586-a030-9b9e85c69744" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/capcs/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/capcs/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/capcs/launcher/DaemonLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/capcs/launcher/DaemonLauncher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
