@@ -1,6 +1,10 @@
 package capcs.launcher;
 
+import capcs.io.DirectoryManager;
+
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class DaemonLauncher extends Launcher {
 
@@ -18,26 +22,28 @@ public class DaemonLauncher extends Launcher {
      */
     public DaemonLauncher() {
         System.out.println("Welcome to the CApCS daemon. Daemon is now running, type 'help' for more information.");
-
         Scanner scanner = new Scanner(System.in);
-        String command;
 
         while (isRunning()) {
             System.out.print("$ > ");
-            command = scanner.nextLine();
+            String command = scanner.nextLine();
+            StringTokenizer keyWords = new StringTokenizer(command);
 
-            switch (command) {
-                case "stop" -> stop();
-                case "status" -> System.out.println("Daemon is " + (isRunning() ? "running" : "stopped"));
-                case "help" -> System.out.println("Available commands: stop, status, exit");
-                default -> System.out.println("Unknown command");
+            try {
+                switch (keyWords.nextToken()) {
+                    case "stop" -> stop();
+                    case "add" -> add(keyWords);
+                    case "status" -> System.out.println("Daemon is " + (isRunning() ? "running" : "stopped"));
+                    case "help" -> System.out.println("Available commands: stop, status, exit");
+                    default -> System.out.println("Unknown command");
+                }
+            } catch (Exception e) {
+                System.out.println("Unknown command, or missing arguments");
             }
         }
+        scanner.close();
 
     }
-
-
-
 
     // MARK: - Methods
 
@@ -57,6 +63,22 @@ public class DaemonLauncher extends Launcher {
         return running;
     }
 
+    /**
+     * Use the addListener method from the Launcher class in the DaemonLauncher class
+     */
+    public void add(StringTokenizer k) throws NoSuchElementException {
+        String instruct = k.nextToken();
+        System.out.println("Adding " + instruct);
+        switch (instruct) {
+            case "folder" -> {
+                String path = k.nextToken();
+                addListener(new DirectoryManager(path));
+                System.out.println("Folder added in " + path);
+            }
+            case "network" -> System.out.println("Network added");
+            default -> System.out.println("Unknown type");
+        }
+    }
 
 }
 
