@@ -21,8 +21,9 @@ public class DocumentTest {
 
     @Test
     public void testGetDate() {
-        Document document = new Document("path", "name", System.currentTimeMillis(), 123);
-        assertEquals(System.currentTimeMillis(), document.getDate());
+        long date = System.currentTimeMillis();
+        Document document = new Document("path", "name", date, 123);
+        assertEquals(date, document.getDate());
     }
 
     @Test
@@ -33,8 +34,9 @@ public class DocumentTest {
 
     @Test
     public void testToString() {
-        Document document = new Document("path", "name", System.currentTimeMillis(), 123);
-        assertEquals("path/name (" + System.currentTimeMillis() + ")", document.toString());
+        long date = System.currentTimeMillis();
+        Document document = new Document("path", "name", date, 123);
+        assertEquals("path/name (" + date + ")", document.toString());
     }
 
     @Test
