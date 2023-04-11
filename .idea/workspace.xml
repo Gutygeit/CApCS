@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7df1ff6-c528-4586-a030-9b9e85c69744" name="Changes" comment="">
+    <list default="true" id="d7df1ff6-c528-4586-a030-9b9e85c69744" name="Changes" comment="Adding network management in DaemonLauncher">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/intellij_forms_rt.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/intellij_forms_rt_src.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/capcs/launcher/UiLauncher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/capcs/launcher/DaemonLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/capcs/launcher/DaemonLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/capcs/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/capcs/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +80,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -93,6 +98,9 @@
       <workItem from="1680952163459" duration="8428000" />
       <workItem from="1681033106115" duration="363000" />
       <workItem from="1681041921411" duration="2698000" />
+      <workItem from="1681047726578" duration="1630000" />
+      <workItem from="1681131026314" duration="4777000" />
+      <workItem from="1681211820715" duration="681000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1680721814894</created>
@@ -115,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681033454006</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Adding network management in DaemonLauncher">
+      <created>1681046462336</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681046462336</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,7 +153,8 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Commit in daemon" />
     <MESSAGE value="Useless methods removing in DaemonLauncher" />
-    <option name="LAST_COMMIT_MESSAGE" value="Useless methods removing in DaemonLauncher" />
+    <MESSAGE value="Adding network management in DaemonLauncher" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding network management in DaemonLauncher" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
