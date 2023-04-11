@@ -12,7 +12,7 @@ public class Launcher {
     /**
      * Listeners list
      */
-    private List<TreeListener> listeners = new ArrayList<TreeListener>();
+    protected List<TreeListener> listeners = new ArrayList<TreeListener>();
 
     // MARK: - Methods
 

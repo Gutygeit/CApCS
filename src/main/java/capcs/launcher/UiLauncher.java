@@ -1,36 +1,38 @@
 package capcs.launcher;
 
+import capcs.io.DirectoryManager;
 import capcs.models.TreeListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.*;
-import java.awt.*;
+import javax.swing.event.ListDataListener;
 
-public class UiLauncher extends JFrame {
-    public UiLauncher() {
+public class UILauncher extends Launcher implements ListModel<TreeListener> {
 
+    // MARK: - Properties
+
+    private List<ListDataListener> listListeners = new ArrayList<>();
+    private JList<TreeListener> list = new JList<>(this);
+    private JPanel details = new JPanel();
+
+    // MARK: - Constructor
+
+    public UILauncher() {
         JFrame frame = new JFrame();
-
-        JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
-        panel.setLayout(new GridLayout(0, 1));
-
-        JList<TreeListener> list = new JList<>();
         JScrollPane scrollPane = new JScrollPane(list);
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollPane, panel);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollPane, details);
         splitPane.setOneTouchExpandable(true);
         splitPane.setDividerLocation(100);
 
-
-        frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Clone Alpha pas Clone Soja");
-        frame.pack();
-        frame.setVisible(true);
+        frame.setContentPane(splitPane);
         frame.setSize(1000, 600);
         frame.setLocationRelativeTo(null);
-        frame.setContentPane(splitPane);
-
+        frame.setVisible(true);
 
         // A button to add a listener with the addListener method from the Launcher class
         /*JButton addListenerButton = new JButton("Add Listener");
@@ -40,8 +42,39 @@ public class UiLauncher extends JFrame {
         });
         panel.add(addListenerButton);
         addListenerButton.setSize(10, 5);
-*/
+        */
 
+        addListener(new DirectoryManager("data/src"));
+    }
+
+    // MARK: - Launcher
+
+    @Override
+    public void addListener(TreeListener listener) {
+        super.addListener(listener);
+        listListeners.forEach(l -> l.contentsChanged(null));
+    }
+
+    // MARK: - ListModel
+
+    @Override
+    public int getSize() {
+        return listeners.size();
+    }
+
+    @Override
+    public TreeListener getElementAt(int index) {
+        return listeners.get(index);
+    }
+
+    @Override
+    public void addListDataListener(ListDataListener l) {
+        listListeners.add(l);
+    }
+
+    @Override
+    public void removeListDataListener(ListDataListener l) {
+        listListeners.remove(l);
     }
 
 }
