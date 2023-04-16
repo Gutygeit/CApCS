@@ -12,9 +12,26 @@ public class Launcher {
     /**
      * Listeners list
      */
-    private List<TreeListener> listeners = new ArrayList<TreeListener>();
+    protected List<TreeListener> listeners = new ArrayList<TreeListener>();
 
     // MARK: - Methods
+
+    /**
+     * Get the listeners size
+     * @return
+     */
+    public int getSize() {
+        return listeners.size();
+    }
+
+    /**
+     * Get the listener at the given index
+     * @param index
+     * @return
+     */
+    public TreeListener getElementAt(int index) {
+        return listeners.get(index);
+    }
 
     /**
      * Add a listener to the list

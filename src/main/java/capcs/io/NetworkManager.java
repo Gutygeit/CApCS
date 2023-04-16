@@ -124,6 +124,24 @@ public class NetworkManager extends TreeListener {
         }).start();
     }
 
+    // MARK: - Getters
+
+    /**
+     * Get the address of the other side
+     * @return Address of the other side
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * Get the port of the other side
+     * @return Port of the other side
+     */
+    public int getPort() {
+        return port;
+    }
+
     // MARK: - TreeListener
 
     @Override

@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Random;
 
 import org.junit.Test;
 
@@ -22,7 +21,7 @@ public class NetworkManagerTest {
         try {
             String source = Files.createTempDirectory("source").toFile().getAbsolutePath();
             String target = Files.createTempDirectory("target").toFile().getAbsolutePath();
-            int port = new Random().nextInt(65535 - 49152) + 49152;
+            int port = 49152;
 
             Launcher launcherServer = new Launcher();
             launcherServer.addListener(new DirectoryManager(source));
@@ -51,7 +50,7 @@ public class NetworkManagerTest {
         try {
             String source = Files.createTempDirectory("source").toFile().getAbsolutePath();
             String target = Files.createTempDirectory("target").toFile().getAbsolutePath();
-            int port = new Random().nextInt(65535 - 49152) + 49152;
+            int port = 49153;
 
             Launcher launcherServer = new Launcher();
             launcherServer.addListener(new DirectoryManager(source));
@@ -75,7 +74,7 @@ public class NetworkManagerTest {
         try {
             String source = Files.createTempDirectory("source").toFile().getAbsolutePath();
             String target = Files.createTempDirectory("target").toFile().getAbsolutePath();
-            int port = new Random().nextInt(65535 - 49152) + 49152;
+            int port = 49154;
 
             Launcher launcherServer = new Launcher();
             launcherServer.addListener(new DirectoryManager(source));

@@ -45,7 +45,10 @@ public class DirectoryManager extends TreeListener {
                 try {
                     Thread.sleep(1000);
 
-                    List<Document> newVersion = listContent("");
+                    List<Document> newVersion;
+                    synchronized (currentVersion) {
+                        newVersion = listContent("");
+                    }
                     if (!newVersion.equals(currentVersion)) {
                         listeners.forEach(listener -> listener.treeChanged(newVersion));
                         currentVersion = newVersion;
@@ -55,6 +58,16 @@ public class DirectoryManager extends TreeListener {
                 }
             }
         }).start();
+    }
+
+    // MARK: - Getters
+
+    /**
+     * Get the path of the directory
+     * @return Path of the directory
+     */
+    public String getPath() {
+        return path;
     }
 
     // MARK: - TreeListener
