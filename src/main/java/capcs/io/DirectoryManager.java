@@ -45,7 +45,10 @@ public class DirectoryManager extends TreeListener {
                 try {
                     Thread.sleep(1000);
 
-                    List<Document> newVersion = listContent("");
+                    List<Document> newVersion;
+                    synchronized (currentVersion) {
+                        newVersion = listContent("");
+                    }
                     if (!newVersion.equals(currentVersion)) {
                         listeners.forEach(listener -> listener.treeChanged(newVersion));
                         currentVersion = newVersion;
