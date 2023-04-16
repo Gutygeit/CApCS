@@ -17,6 +17,23 @@ public class Launcher {
     // MARK: - Methods
 
     /**
+     * Get the listeners size
+     * @return
+     */
+    public int getSize() {
+        return listeners.size();
+    }
+
+    /**
+     * Get the listener at the given index
+     * @param index
+     * @return
+     */
+    public TreeListener getElementAt(int index) {
+        return listeners.get(index);
+    }
+
+    /**
      * Add a listener to the list
      * @param listener
      */

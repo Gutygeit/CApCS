@@ -57,6 +57,16 @@ public class DirectoryManager extends TreeListener {
         }).start();
     }
 
+    // MARK: - Getters
+
+    /**
+     * Get the path of the directory
+     * @return Path of the directory
+     */
+    public String getPath() {
+        return path;
+    }
+
     // MARK: - TreeListener
 
     @Override
