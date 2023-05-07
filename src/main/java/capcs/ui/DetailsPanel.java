@@ -29,17 +29,17 @@ public class DetailsPanel extends JPanel {
 
         if (listener instanceof DirectoryManager) {
             DirectoryManager directoryManager = (DirectoryManager) listener;
-            formPanel.add(new JLabel("Chemin :"));
+            formPanel.add(new JLabel("Path:"));
             formPanel.add(new JTextField(directoryManager.getPath()));
         } else if (listener instanceof NetworkManager) {
             NetworkManager networkManager = (NetworkManager) listener;
             if (networkManager.getAddress() != null) {
-                formPanel.add(new JLabel("Adresse :"));
+                formPanel.add(new JLabel("Address:"));
                 formPanel.add(new JTextField(networkManager.getAddress()));
-                formPanel.add(new JLabel("Port :"));
+                formPanel.add(new JLabel("Port:"));
                 formPanel.add(new JTextField(networkManager.getPort() + ""));
             } else {
-                formPanel.add(new JLabel("Port :"));
+                formPanel.add(new JLabel("Port:"));
                 formPanel.add(new JTextField(networkManager.getPort() + ""));
             }
         }
