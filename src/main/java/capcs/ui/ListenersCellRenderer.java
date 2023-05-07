@@ -37,17 +37,17 @@ public class ListenersCellRenderer implements ListCellRenderer<TreeListener> {
 
         if (value instanceof DirectoryManager) {
             DirectoryManager directoryManager = (DirectoryManager) value;
-            panel.add(new JLabel("Dossier"));
+            panel.add(new JLabel("Folder"));
             panel.add(new JLabel(directoryManager.getPath()));
         } else if (value instanceof NetworkManager) {
             NetworkManager networkManager = (NetworkManager) value;
             if (networkManager.getAddress() != null) {
                 panel.add(new JLabel("Client"));
                 panel.add(new JLabel(networkManager.getAddress()));
-                panel.add(new JLabel("Port : " + networkManager.getPort()));
+                panel.add(new JLabel("Port: " + networkManager.getPort()));
             } else {
-                panel.add(new JLabel("Serveur"));
-                panel.add(new JLabel("Port : " + networkManager.getPort()));
+                panel.add(new JLabel("Server"));
+                panel.add(new JLabel("Port: " + networkManager.getPort()));
             }
         }
         

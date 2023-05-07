@@ -56,41 +56,41 @@ public class ListPanel extends JPanel {
         
         JScrollPane scrollPane = new JScrollPane(list);
 
-        JButton addFolderButton = new JButton("Nouveau dossier");
+        JButton addFolderButton = new JButton("New folder");
         addFolderButton.addActionListener(e -> {
-            String path = JOptionPane.showInputDialog("Chemin du dossier");
+            String path = JOptionPane.showInputDialog("Path");
             if (path == null) return;
             launcher.addListener(new DirectoryManager(path));
             listListeners.forEach(l -> l.contentsChanged(null));
         });
 
-        JButton addClientButton = new JButton("Nouveau client");
+        JButton addClientButton = new JButton("New client");
         addClientButton.addActionListener(e -> {
-            String address = JOptionPane.showInputDialog("Adresse du serveur");
+            String address = JOptionPane.showInputDialog("Server address");
             if (address == null) return;
             int port = -1;
             do {
                 try {
-                    String portStr = JOptionPane.showInputDialog("Port du serveur");
+                    String portStr = JOptionPane.showInputDialog("Server port");
                     if (portStr == null) return;
                     port = Integer.parseInt(portStr);
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Le port doit être un nombre");
+                    JOptionPane.showMessageDialog(null, "Port must be a number");
                 }
             } while (port < 0);
             launcher.addListener(new NetworkManager(address, port));
             listListeners.forEach(l -> l.contentsChanged(null));
         });
 
-        JButton addServerButton = new JButton("Nouveau serveur");
+        JButton addServerButton = new JButton("New server");
         addServerButton.addActionListener(e -> {
             int port = -1;
             do {
-                try {String portStr = JOptionPane.showInputDialog("Port du serveur");
+                try {String portStr = JOptionPane.showInputDialog("Server port");
                 if (portStr == null) return;
                 port = Integer.parseInt(portStr);
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Le port doit être un nombre");
+                    JOptionPane.showMessageDialog(null, "Port must be a number");
                 }
             } while (port < 0);
             launcher.addListener(new NetworkManager(null, port));
