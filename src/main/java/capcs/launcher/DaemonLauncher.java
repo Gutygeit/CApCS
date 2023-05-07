@@ -35,7 +35,8 @@ public class DaemonLauncher extends Launcher {
                     case "stop" -> stop();
                     case "add" -> add(keyWords);
                     case "status" -> System.out.println("Daemon is " + (isRunning() ? "running" : "stopped"));
-                    case "help" -> System.out.println("Available commands: stop, status, exit");
+                    case "help" ->
+                            System.out.println("Available commands: stop, status, exit, add folder <path>, add client <ip> <port>, add server <port>");
                     default -> System.out.println("Unknown command");
                 }
             } catch (Exception e) {
@@ -74,12 +75,12 @@ public class DaemonLauncher extends Launcher {
             case "folder" -> {
                 String path = k.nextToken();
                 addListener(new DirectoryManager(path));
-                System.out.println("Folder added in " + path);
+                System.out.println("Listener added in " + path);
             }
             case "client" -> {
                 try {
                     new NetworkManager(k.nextToken(), Integer.parseInt(k.nextToken()));
-                    System.out.println("client added");
+                    System.out.println("Client added");
                 } catch (NumberFormatException e) {
                     System.out.println("Port must be an integer");
                     System.out.println("Client not added");
@@ -88,7 +89,7 @@ public class DaemonLauncher extends Launcher {
             case "server" -> {
                 try {
                     new NetworkManager(null, Integer.parseInt(k.nextToken()));
-                    System.out.println("server added");
+                    System.out.println("Server added");
                 } catch (NumberFormatException e) {
                     System.out.println("Port must be an integer");
                     System.out.println("Server not added");

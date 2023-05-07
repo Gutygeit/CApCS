@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7df1ff6-c528-4586-a030-9b9e85c69744" name="Changes" comment="Adding network management in DaemonLauncher">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/intellij_forms_rt.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/intellij_forms_rt_src.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/capcs/launcher/UiLauncher.java" afterDir="false" />
+    <list default="true" id="d7df1ff6-c528-4586-a030-9b9e85c69744" name="Changes" comment="Ui initialization">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/capcs/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/capcs/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/capcs/launcher/DaemonLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/capcs/launcher/DaemonLauncher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +97,10 @@
       <workItem from="1681047726578" duration="1630000" />
       <workItem from="1681131026314" duration="4777000" />
       <workItem from="1681211820715" duration="681000" />
+      <workItem from="1681399665512" duration="627000" />
+      <workItem from="1681844831516" duration="47000" />
+      <workItem from="1683093783006" duration="6000" />
+      <workItem from="1683462963864" duration="661000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1680721814894</created>
